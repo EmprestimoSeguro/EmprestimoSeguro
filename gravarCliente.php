@@ -1,10 +1,10 @@
 <?php
 // Conexão com o banco de dados
 $con = mysqli_connect(
-    "sql306.infinityfree.com", // Host
-    "if0_38162421", // Nome de usuário
-    "Motog157", // Senha
-    "if0_38162421_emprestimo", // Banco de dados
+    "gzp0u91edhmxszwf.cbetxkdyhwsb.us-east-1.rds.amazonaws.com", // Host
+    "yy4kkvgyo2feducw", // Nome de usuário
+    "bvwpl1m00gwhu57w", // Senha
+    "jgxcc77h0yuep9la", // Banco de dados
     3306 // Porta
 );
 

@@ -13,17 +13,16 @@ if (!$con) {
     die("Falha na conexão: " . mysqli_connect_error());
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Verifica se o nome foi preenchido
     // Captura os dados do formulário e previne SQL Injection
-    $nome = mysqli_real_escape_string($con, $_POST['nome']);
-    $email = mysqli_real_escape_string($con, $_POST['email'] ?? null);
-    $telefone_cel = mysqli_real_escape_string($con, $_POST['telefone_cel'] ?? null);
-    $telefone_fixo = mysqli_real_escape_string($con, $_POST['telefone_fixo'] ?? null);
-    $valor = mysqli_real_escape_string($con, $_POST['valor'] ?? null);
-    $parcelas = mysqli_real_escape_string($con, $_POST['parcelas'] ?? null);
-    $forma_pagamento = mysqli_real_escape_string($con, $_POST['forma_pagamento'] ?? null);
-    $motivo = mysqli_real_escape_string($con, $_POST['motivo'] ?? null);
+$nome = $_POST['nome'] ?? null;
+$email = $_POST['email'] ?? null;
+$telefone_cel = $_POST['tvelefone_cel'] ?? null;
+$telefone_fixo = $_POST['telefone_fixo'] ?? null;
+$valor = $_POST['valor'] ?? null;
+$parcelas = $_POST['parcelas'] ?? null;
+$forma_pagamento = $_POST['forma_pagamento'] ?? null;
+$motivo = $_POST['motivo'] ?? null;
 
     // Aqui, você pode adicionar mais validações, como verificar se o valor é numérico, etc.
     
@@ -36,7 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         echo "Erro: " . mysqli_error($con);
     }
-}
 
 
 // Fecha a conexão

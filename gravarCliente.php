@@ -1,10 +1,10 @@
 <?php
 // Conexão com o banco de dados
 $con = mysqli_connect(
-    "gzp0u91edhmxszwf.cbetxkdyhwsb.us-east-1.rds.amazonaws.com", // Host
-    "yy4kkvgyo2feducw", // Nome de usuário
-    "bvwpl1m00gwhu57w", // Senha
-    "jgxcc77h0yuep9la", // Banco de dados
+    "sql306.infinityfree.com", // Host
+    "if0_38162421", // Nome de usuário
+    "Motog157", // Senha
+    "if0_38162421_emprestimo", // Banco de dados
     3306 // Porta
 );
 
@@ -13,51 +13,31 @@ if (!$con) {
     die("Falha na conexão: " . mysqli_connect_error());
 }
 
-// Captura os dados do formulário (substitua pelos métodos reais que você utiliza)
-$nome = $_GET['nome'] ?? null;
-$email = $_GET['email'] ?? null;
-$telefone_cel = $_GET['tvelefone_cel'] ?? null;
-$telefone_fixo = $_GET['telefone_fixo'] ?? null;
-$valor = $_GET['valor'] ?? null;
-$parcelas = $_GET['parcelas'] ?? null;
-$forma_pagamento = $_GET['forma_pagamento'] ?? null;
-$motivo = $_GET['motivo'] ?? null;
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Verifica se o nome foi preenchido
+    // Captura os dados do formulário e previne SQL Injection
+    $nome = mysqli_real_escape_string($con, $_POST['nome']);
+    $email = mysqli_real_escape_string($con, $_POST['email'] ?? null);
+    $telefone_cel = mysqli_real_escape_string($con, $_POST['telefone_cel'] ?? null);
+    $telefone_fixo = mysqli_real_escape_string($con, $_POST['telefone_fixo'] ?? null);
+    $valor = mysqli_real_escape_string($con, $_POST['valor'] ?? null);
+    $parcelas = mysqli_real_escape_string($con, $_POST['parcelas'] ?? null);
+    $forma_pagamento = mysqli_real_escape_string($con, $_POST['forma_pagamento'] ?? null);
+    $motivo = mysqli_real_escape_string($con, $_POST['motivo'] ?? null);
 
-// Validações básicas
-if (!$nome) {
-    die("Nome deve ser informado. Sistema interrompido!");
-}
-if (!$email) {
-    die("E-mail deve ser informado. Sistema interrompido!");
+    // Aqui, você pode adicionar mais validações, como verificar se o valor é numérico, etc.
+    
+    // Exemplo de inserção no banco de dados
+    $sql = "INSERT INTO emprestimo (nome, email, telefone_cel, telefone_fixo, valor, parcelas, forma_pagamento, motivo)
+            VALUES ('$nome', '$email', '$telefone_cel', '$telefone_fixo', '$valor', '$parcelas', '$forma_pagamento', '$motivo')";
+    
+    if (mysqli_query($con, $sql)) {
+        echo "Empréstimo registrado com sucesso!";
+    } else {
+        echo "Erro: " . mysqli_error($con);
+    }
 }
 
-// Insere os dados no banco
-$sql = "INSERT INTO `emprestimo-solicitacoes` (
-            nome, 
-            email, 
-            telefone_cel, 
-            telefone_fixo, 
-            valor, 
-            parcelas, 
-            forma_pagamento, 
-            motivo
-        ) VALUES (
-            '$nome',
-            '$email',
-            '$telefone_cel',
-            '$telefone_fixo',
-            '$valor',
-            '$parcelas',
-            '$forma_pagamento',
-            '$motivo'
-        )";
-
-// Executa a consulta
-if (mysqli_query($con, $sql)) {
-    echo "$nome, seu cadastro foi inserido com sucesso!";
-} else {
-    die("Erro na inserção do Cadastro Básico: " . mysqli_error($con));
-}
 
 // Fecha a conexão
 mysqli_close($con);

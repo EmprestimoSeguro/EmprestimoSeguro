@@ -15,14 +15,14 @@ if (!$con) {
 
     // Verifica se o nome foi preenchido
     // Captura os dados do formulário e previne SQL Injection
-$nome = $_POST['nome'] ?? null;
-$email = $_POST['email'] ?? null;
-$telefone_cel = $_POST['telefone_cel'] ?? null;
-$telefone_fixo = $_POST['telefone_fixo'] ?? null;
-$valor = $_POST['valor'] ?? null;
-$parcelas = $_POST['parcelas'] ?? null;
-$forma_pagamento = $_POST['forma_pagamento'] ?? null;
-$motivo = $_POST['motivo'] ?? null;
+    $nome = $_GET['nome'];
+    $email = $_GET['email'];
+    $telefone_cel = $_GET['telefone_cel'];
+    $telefone_fixo = $_GET['telefone_fixo'];
+    $valor = $_GET['valor'];
+    $parcelas = $_GET['parcelas'];
+    $forma_pagamento = $_GET['forma_pagamento'];
+    $motivo = $_GET['motivo'];
 
     // Aqui, você pode adicionar mais validações, como verificar se o valor é numérico, etc.
     

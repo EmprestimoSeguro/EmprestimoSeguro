@@ -17,7 +17,7 @@ if (!$con) {
     // Captura os dados do formulário e previne SQL Injection
 $nome = $_POST['nome'] ?? null;
 $email = $_POST['email'] ?? null;
-$telefone_cel = $_POST['tvelefone_cel'] ?? null;
+$telefone_cel = $_POST['telefone_cel'] ?? null;
 $telefone_fixo = $_POST['telefone_fixo'] ?? null;
 $valor = $_POST['valor'] ?? null;
 $parcelas = $_POST['parcelas'] ?? null;

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ficha de Cadastro - ABV Contratos Financeiros</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #333;
+      text-align: center; /* Centralizando o conteúdo do corpo */
+    }
+
+    header {
+      background: #0073e6;
+      color: white;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    header nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    header a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      padding: 80px 20px 20px;
+      max-width: 1200px; /* Largura máxima */
+      margin: 0 auto; /* Centralizando o container */
+      text-align: left; /* Alinhando o texto à esquerda dentro do container */
+    }
+
+    h1, h2 {
+      color: #0073e6;
+    }
+
+    .form-container {
+      background: #f4f4f4;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #333;
+      color: white;
+      margin-top: 30px;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="email"],
+    .form-container input[type="tel"],
+    .form-container input[type="number"],
+    .form-container select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-container input[type="submit"] {
+      background-color: #0073e6;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .form-container input[type="submit"]:hover {
+      background-color: #005bb5;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="termos_privacidade.html">Termos e Privacidade</a>
+      <a href="termos_taxas.html">Termos e Taxas</a>
+      <a href="ficha_cadastro.html">Ficha de Cadastro</a>
+      <a href="politica_privacidade.html">Política de Privacidade</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>📜 Ficha de Cadastro</h1>
+    <p>
+      Preencha o formulário abaixo para contato de nossa equipe. Iremos analisar seu perfil e localizar uma proposta de acordo com seu perfil. 
+      Lembre-se de preencher os dados corretamente para que nossa equipe de atendimento possa retornar contato corretamente.
+    </p>
+
+
+    <div class="form-container">
+      <form action="gravarCliente.php" method="get">
+
+
+        <label for="Email">Nome Completo: </label>
+        <input type="Email" id="Email" name="Email" placeholder="Seu Email" style="width: 96.5%; height: 28px;" required><br>
+
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" placeholder="Seu e-mail" style="width: 96.5%; height: 28px;" required><br>
+        
+        <label for="telefone">Telefone Celular:</label>
+        <input type="tel" id="telefone_cel" name="telefone_cel" placeholder="Ex. (99) 9 9999-9999" style="width: 96.5%; height: 28px;" required><br>
+        
+        <label for="telefone-fixo">Telefone Fixo:</label>
+        <input type="tel" id="telefone_fixo" name="telefone_fixo"placeholder="Ex. (99) 9 9999-9999" style="width: 96.5%; height: 28px;" required><br>
+        
+
+
+
+
+
+
+
+
+
+
+        <label for="valor">Qual Valor Deseja Solicitar?</label>
+        <select id="valor" name="valor" required>
+          <script>
+            const selectElement = document.getElementById("valor");
+
+            // Valores de R$ 5.000 a R$ 50.000, incrementando de R$ 1.000
+            for (let i = 5000; i <= 50000; i += 1000) {
+              const option = document.createElement("option");
+              option.value = i;
+              option.textContent = `R$ ${i.toLocaleString("pt-BR")}`;
+              selectElement.appendChild(option);
+            }
+            // Valores de R$ 55.000 a R$ 500.000, incrementando de R$ 5.000
+            for (let i = 55000; i <= 500000; i += 5000) {
+              const option = document.createElement("option");
+              option.value = i;
+              option.textContent = `R$ ${i.toLocaleString("pt-BR")}`;
+              selectElement.appendChild(option);
+            }
+          </script>
+        </select><br>
+
+        <label for="parcelas">Em quantas parcelas deseja pagar?</label>
+        <select id="parcelas" name="parcelas" required>
+          <script>
+            for (let i = 1; i <= 48; i++) {
+              document.write(`<option value="${i}">${i}x</option>`);
+            }
+          </script>
+        </select><br>
+        
+        <label for="forma_pagamento">Qual a forma de pagamento?</label>
+        <select id="forma_pagamento" name="forma_pagamento" required>
+          <option value="boleto">Boleto</option>
+          <option value="crediario">Crediário</option>
+          <option value="debito_automatico">Débito Automático</option>
+          <option value="pix_agendado">Pix Agendado</option>
+          <option value="consignado">Consignado (Aposentadoria/Pensão)</option>
+          <option value="outros">Outros</option>
+        </select><br>
+
+        <label for="motivo">Motivo da Solicitação:</label>
+        <select id="motivo" name="motivo" required>
+          <option value="quitar_divida">Quitar Dívidas</option>
+          <option value="reformar_imovel">Reformar Imóvel</option>
+          <option value="aquisicao_imovel">Aquisição de Imóvel ou Terreno</option>
+          <option value="aquisicao_veiculo">Aquisição de Veículo</option>
+          <option value="despesas_medicas">Despesas Médicas</option>
+          <option value="despesas_pessoais">Despesas Pessoais</option>
+          <option value="gastos_alimenticios">Gastos Alimentícios</option>
+          <option value="gastos_educacao">Gastos com Educação</option>
+          <option value="gastos_viajens">Gastos com Viagens</option>
+          <option value="outro_motivo">Outro Motivo</option>
+        </select><br>
+
+        <input type="submit" value="Enviar">
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>ABV CONTRATOS FINANCEIROS LTDA</p>
+    <p>abvfinaceiro@gmail.com</p>
+    <p>CNPJ: 57.946.156/0001-87</p>
+    <p>Horário de Atendimento: Segunda à Sexta das 08:30 às 19:00</p>
+    <p>ABV CONTRATOS FINANCEIROS LTDA - Copyright ® 2025 - Todos os Direitos Reservados.</p>
+  </footer>
+</body>
+</html>
